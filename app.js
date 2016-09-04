@@ -6,6 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var todos = require('./routes/todos');
 var AV = require('leanengine');
+var expressWs = require('express-ws');
+expressWs(app);
+
+app.ws('/ws', function(ws, req) {
+  ws.on('message', function(msg) {
+    ws.send(msg);
+  });
+});
+
 
 var app = express();
 
